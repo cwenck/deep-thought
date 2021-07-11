@@ -40,6 +40,26 @@ class Temperature private constructor(temperature: BigDecimal, unit: Temperature
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Temperature
+
+        if (celsius != other.celsius) return false
+        if (fahrenheit != other.fahrenheit) return false
+        if (kelvin != other.kelvin) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = celsius.hashCode()
+        result = 31 * result + fahrenheit.hashCode()
+        result = 31 * result + kelvin.hashCode()
+        return result
+    }
+
     companion object {
         fun ofKelvin(temperature: BigDecimal): Temperature? =
             withinRange(Temperature(temperature, KELVIN))

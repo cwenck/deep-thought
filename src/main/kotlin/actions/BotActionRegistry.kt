@@ -1,16 +1,17 @@
 package actions
 
 import actions.conversion.temperature.TemperatureConversionAction
-import discord4j.core.GatewayDiscordClient
+import core.BotContext
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.whenComplete
 
 object BotActionRegistry {
     private val botActions: List<BotAction> = listOf(
-        TemperatureConversionAction()
+        TemperatureConversionAction(),
+        UserRoleUpdateEventHandler(),
     )
 
-    fun executeBotActions(client: GatewayDiscordClient): Mono<Void> {
-        return botActions.map { it.execute(client) }.whenComplete()
+    fun executeBotActions(botContext: BotContext): Mono<Void> {
+        return botActions.map { it.execute(botContext) }.whenComplete()
     }
 }
