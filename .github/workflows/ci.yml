@@ -9,7 +9,6 @@ jobs:
   docker:
     name: Docker
     runs-on: ubuntu-latest
-    needs: [compile-release, tests, formatting, clippy]
 
     steps:
       - name: Checkout Code
