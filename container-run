@@ -1,0 +1,3 @@
+#!/bin/sh
+docker pull ghcr.io/cwenck/deep-thought:latest-snapshot
+docker run -t --env-file .env --rm ghcr.io/cwenck/deep-thought:latest-snapshot
