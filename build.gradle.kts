@@ -12,8 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.1")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.1.3")
     implementation("com.discord4j:discord4j-core:3.1.6")
     testImplementation(kotlin("test"))
 }

@@ -1,7 +1,8 @@
 package actions
 
 import discord4j.core.GatewayDiscordClient
+import org.reactivestreams.Publisher
 
 interface BotAction {
-    suspend fun execute(client: GatewayDiscordClient);
+    fun execute(client: GatewayDiscordClient): Publisher<Any>
 }

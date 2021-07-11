@@ -2,24 +2,22 @@ package actions
 
 import discord4j.core.GatewayDiscordClient
 import discord4j.core.event.domain.Event
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.reactive.asFlow
+import org.reactivestreams.Publisher
+import reactor.core.publisher.Mono
 
 interface EventHandler<E: Event> : BotAction {
     val eventType: Class<E>
 
-    override suspend fun execute(client: GatewayDiscordClient) {
-        client.on(eventType)
-            .asFlow()
+    override fun execute(client: GatewayDiscordClient): Publisher<Any> {
+        return client.on(eventType)
             .filter(::filterEvent)
-            .collect(::handleEvent)
+            .flatMap(::handleEvent)
     }
 
-    suspend fun filterEvent(event: E): Boolean {
+    fun filterEvent(event: E): Boolean {
         // By default, allow all events
         return true;
     }
 
-    suspend fun handleEvent(event: E)
+    fun handleEvent(event: E) : Mono<Void>
 }
