@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-//    kotlin("jvm") version "1.5.10"
     kotlin("jvm") version "1.5.20"
+    application
 }
 
 group = "dev.cwenck"
@@ -10,6 +10,10 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass.set("core.BotKt")
 }
 
 dependencies {
