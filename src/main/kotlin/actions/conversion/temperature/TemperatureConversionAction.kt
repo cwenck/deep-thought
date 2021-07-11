@@ -33,9 +33,9 @@ class TemperatureConversionAction : EventHandler<MessageCreateEvent> {
         return event.message.channel.flatMap { channel ->
             temperatures.asIterable().map {
                 channel.createEmbed { reply ->
-                    reply.addField("Fahrenheit", formatDecimal(it.asFahrenheit()), true)
-                    reply.addField("Celsius", formatDecimal(it.asCelsius()), true)
-                    reply.addField("Kelvin", formatDecimal(it.asKelvin()), true)
+                    reply.addField("Fahrenheit", formatDecimal(it.fahrenheit), true)
+                    reply.addField("Celsius", formatDecimal(it.celsius), true)
+                    reply.addField("Kelvin", formatDecimal(it.kelvin), true)
                 }.onErrorResume {
                     Mono.empty()
                 }
